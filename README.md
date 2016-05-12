@@ -39,6 +39,7 @@ This package is still not available at MELPA for now. You can install it by
     (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 ```
 
+There is also a layer(not merged yet): https://github.com/syl20bnr/spacemacs/pull/6036
 # Related
 
 - [coldnew/linum-relative: display relative line number in the left margin in emacs](https://github.com/coldnew/linum-relative)
