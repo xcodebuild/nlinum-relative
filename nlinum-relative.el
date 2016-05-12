@@ -45,9 +45,9 @@ nlinum-releative will show the real line number at current line."
   :type 'number
   :group 'nlinum-relative)
 
-(defvar nlinum-relative-current--line 0
+(defvar nlinum-relative--current-line 0
   "Store current line number before jit-lock.")
-(make-variable-buffer-local 'nlinum-relative-current--line)
+(make-variable-buffer-local 'nlinum-relative--current-line)
 
 (defvar nlinum-relative--store-format-function nlinum-format-function
   "Store old `nlinum-relative-format-function'")
