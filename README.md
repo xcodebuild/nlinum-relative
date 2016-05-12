@@ -5,7 +5,7 @@
 Emacs relative line number besed on nlinum-mode
 
 # Preview
-![nlinum-relative](https://cloud.githubusercontent.com/assets/5436704/15206639/51137398-1853-11e6-824c-76595bc40d55.gif)
+![nlinum-relative](https://cloud.githubusercontent.com/assets/5436704/15207154/cafea3fa-1856-11e6-8f01-26a3832bf1fd.gif)
 
 # Usage
 
