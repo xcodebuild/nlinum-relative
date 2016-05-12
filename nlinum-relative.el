@@ -55,8 +55,9 @@ nlinum-releative will show the real line number at current line."
 (defvar nlinum-relative--format-function
   (lambda (line width)
     (let* ((line-display (abs (- line nlinum-relative--current-line) ))
-           (line-display (if (eq line-display 0) nlinum-relative--current-line line-display))
-           (str (if (and (not (string-equal nlinum-relative-current-symbol "")) (eq line-display nlinum-relative--current-line))
+           (is-current-line? (eq line-display 0))
+           (line-display (if is-current-line? nlinum-relative--current-line line-display))
+           (str (if (and (not (string-equal nlinum-relative-current-symbol "")) is-current-line?)
                     nlinum-relative-current-symbol (format nlinum-format line-display)))
           )
       (when (< (length str) width)
