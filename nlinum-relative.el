@@ -92,13 +92,18 @@ nlinum-releative will show the real line number at current line."
 
 (defun nlinum-relative-on ()
   "Turn ON nlinum-relative."
+  (when (not (bound-and-true-p nlinum-relative-mode)) (nlinum-relative-mode))
   (advice-add 'jit-lock-fontify-now :before #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--format-function)
+  (when nlinum-relative--timer
+    (cancel-timer nlinum-relative--timer)
+    (setq nlinum-relative--timer nil))
   (setq nlinum-relative--timer (run-with-idle-timer nlinum-relative-redisplay-delay t '(lambda () (font-lock-fontify-buffer))))
   )
 
 (defun nlinum-relative-off ()
   "Turn OFF nlinum-relative."
+  (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-mode -1))
   (advice-remove 'jit-lock-fontify-now #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--store-format-function)
   (when nlinum-relative--timer
