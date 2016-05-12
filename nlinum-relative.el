@@ -45,6 +45,12 @@ nlinum-releative will show the real line number at current line."
   :type 'number
   :group 'nlinum-relative)
 
+;;;; Faces
+(defface nlinum-relative-current-face
+  '((t :inherit linum :foreground "#CAE682" :background "#444444" :weight bold))
+  "Face for displaying current line."
+  :group 'nlinum-relative)
+
 (defcustom nlinum-relative-offset 0
   "relative offset number, you set it to 1 if want 0, 2, 3, 4 etc"
   :type 'number
@@ -68,7 +74,9 @@ nlinum-releative will show the real line number at current line."
       (when (< (length str) width)
         ;; Left pad to try and right-align the line-numbers.
         (setq str (concat (make-string (- width (length str)) ?\ ) str)))
-      (put-text-property 0 width 'face 'linum str)
+      (if is-current-line?
+          (put-text-property 0 width 'face 'nlinum-relative-current-face str)
+        (put-text-property 0 width 'face 'linum str))
       str))
   "nlinum-relative to replace nlinum-format-function")
 
