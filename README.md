@@ -7,6 +7,9 @@ Emacs relative line number besed on nlinum-mode
 # Preview
 ![nlinum-relative](https://cloud.githubusercontent.com/assets/5436704/15207154/cafea3fa-1856-11e6-8f01-26a3832bf1fd.gif)
 
+# Why this
+`nlinum` is faster than `linum` because of `jit-lock`. And `nlinum-relative` only redisplay line number in idle which is much more smooth especially in big complex files.
+
 # Usage
 
 ``` lisp
