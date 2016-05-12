@@ -45,6 +45,11 @@ nlinum-releative will show the real line number at current line."
   :type 'number
   :group 'nlinum-relative)
 
+(defcustom nlinum-relative-offset 0
+  "relative offset number, you set it to 1 if want 0, 2, 3, 4 etc"
+  :type 'number
+  :group 'nlinum-relative)
+
 (defvar nlinum-relative--current-line 0
   "Store current line number before jit-lock.")
 (make-variable-buffer-local 'nlinum-relative--current-line)
@@ -58,8 +63,8 @@ nlinum-releative will show the real line number at current line."
            (is-current-line? (eq line-display 0))
            (line-display (if is-current-line? nlinum-relative--current-line line-display))
            (str (if (and (not (string-equal nlinum-relative-current-symbol "")) is-current-line?)
-                    nlinum-relative-current-symbol (format nlinum-format line-display)))
-          )
+                    nlinum-relative-current-symbol (format nlinum-format (+ line-display nlinum-relative-offset))))
+           )
       (when (< (length str) width)
         ;; Left pad to try and right-align the line-numbers.
         (setq str (concat (make-string (- width (length str)) ?\ ) str)))

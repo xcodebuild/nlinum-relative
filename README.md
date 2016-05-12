@@ -14,10 +14,11 @@ Emacs relative line number besed on nlinum-mode
 
 ``` lisp
 (require 'nlinum-relative)
-(nlinum-relative-setup-evil) ;; setup for evil
+(nlinum-relative-setup-evil)                    ;; setup for evil
 (add-hook 'prog-mode-hook 'nlinum-relative-mode)
-(setq nlinum-relative-redisplay-delay 0.1) ;; delay
-(setq nlinum-relative-current-symbol "->") ;; or "" for current line number
+(setq nlinum-relative-redisplay-delay 0.1)      ;; delay
+(setq nlinum-relative-current-symbol "->")      ;; or "" for display current line number
+(setq nlinum-relative-offset 0)                 ;; 1 if you want 0, 2, 3...
 ```
 
 # Spaecmacs
