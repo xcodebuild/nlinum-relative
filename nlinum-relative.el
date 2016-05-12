@@ -122,6 +122,8 @@ nlinum-releative will show the real line number at current line."
   (interactive)
   (add-hook 'evil-insert-state-entry-hook (lambda () (when (nlinum-relative-mode) (nlinum-relative-off))))
   (add-hook 'evil-insert-state-exit-hook (lambda () (when (nlinum-relative-mode) (nlinum-relative-on))))
+  (add-hook 'nlinum-relative-mode-hook (lambda ()
+                          (when (evil-normal-state-p) (nlinum-relative-on))))
   )
 
 (provide 'nlinum-relative)
