@@ -80,15 +80,14 @@ nlinum-releative will show the real line number at current line."
       str))
   "nlinum-relative to replace nlinum-format-function")
 
-
-(defun nlinum-relative--save-current-line (begin end)
+(defun nlinum-relative--save-current-line ()
   "Save current line before jit-lock"
-  (when nlinum-relative-mode
-    (setq nlinum-relative--current-line (line-number-at-pos))
-    ))
+  (setq nlinum-relative--current-line (string-to-number (format-mode-line "%l")))
+  )
 
 (defun nlinum-relative-reflush ()
   "Reflush display on current window"
+  (nlinum-relative--save-current-line)
   (jit-lock-refontify (window-start) (window-end))
   )
 
@@ -98,7 +97,7 @@ nlinum-releative will show the real line number at current line."
 (defun nlinum-relative-on ()
   "Turn ON nlinum-relative."
   (when (not (bound-and-true-p nlinum-relative-mode)) (nlinum-relative-mode))
-  (advice-add 'jit-lock-fontify-now :before #'nlinum-relative--save-current-line)
+  ;; (advice-add 'jit-lock-fontify-now :before #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--format-function)
   (when nlinum-relative--timer
     (cancel-timer nlinum-relative--timer)
