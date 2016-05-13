@@ -87,6 +87,11 @@ nlinum-releative will show the real line number at current line."
     (setq nlinum-relative--current-line (line-number-at-pos))
     ))
 
+(defun nlinum-relative-reflush ()
+  "Reflush display on current window"
+  (jit-lock-refontify (window-start) (window-end))
+  )
+
 (defvar nlinum-relative--timer nil)
 (make-local-variable 'nlinum-relative--timer)
 
@@ -98,8 +103,7 @@ nlinum-releative will show the real line number at current line."
   (when nlinum-relative--timer
     (cancel-timer nlinum-relative--timer)
     (setq nlinum-relative--timer nil))
-  (setq nlinum-relative--timer (run-with-idle-timer nlinum-relative-redisplay-delay t '(lambda () (font-lock-fontify-buffer))))
-  )
+  (setq nlinum-relative--timer (run-with-idle-timer nlinum-relative-redisplay-delay t 'nlinum-relative-reflush)))
 
 (defun nlinum-relative-off ()
   "Turn OFF nlinum-relative."
