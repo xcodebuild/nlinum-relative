@@ -33,7 +33,7 @@
   "Show relative line numbers with nlinum."
   :group 'convenience)
 
-(defcustom nlinum-relative-current-symbol "->"
+(defcustom nlinum-relative-current-symbol ""
   "The symbol you want to show on the current line, by default it is empty.
    You can use any string like \"->\". If this variable is empty string,
 nlinum-releative will show the real line number at current line."
@@ -88,7 +88,13 @@ nlinum-releative will show the real line number at current line."
 (defun nlinum-relative-reflush ()
   "Reflush display on current window"
   (nlinum-relative--save-current-line)
-  (jit-lock-refontify (window-start) (window-end))
+  ;; (jit-lock-refontify (window-start) (window-end))
+
+  ;; copy from nlinum-mode
+  (remove-overlays (point-min) (point-max) 'nlinum t)
+  (with-silent-modifications
+    (remove-text-properties
+     (point-min) (point-max) '(fontified)))
   )
 
 (defvar nlinum-relative--timer nil)
@@ -113,6 +119,7 @@ nlinum-releative will show the real line number at current line."
     (cancel-timer nlinum-relative--timer)
     (setq nlinum-relative--timer nil)
     ))
+
 
 ;;;###autoload
 (defun nlinum-relative-toggle ()
