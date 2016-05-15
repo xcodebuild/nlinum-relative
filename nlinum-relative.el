@@ -102,8 +102,10 @@ nlinum-releative will show the real line number at current line."
 (defvar nlinum-relative--timer nil)
 (make-local-variable 'nlinum-relative--timer)
 
+;;;###autoload
 (defun nlinum-relative-on ()
   "Turn ON nlinum-relative."
+  (interactive)
   (when (not (bound-and-true-p nlinum-relative-mode)) (nlinum-relative-mode))
   ;; (advice-add 'jit-lock-fontify-now :before #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--format-function)
@@ -112,8 +114,10 @@ nlinum-releative will show the real line number at current line."
     (setq nlinum-relative--timer nil))
   (setq nlinum-relative--timer (run-with-idle-timer nlinum-relative-redisplay-delay t 'nlinum-relative-reflush)))
 
+;;;###autoload
 (defun nlinum-relative-off ()
   "Turn OFF nlinum-relative."
+  (interactive)
   (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-mode -1))
   (advice-remove 'jit-lock-fontify-now #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--store-format-function)
