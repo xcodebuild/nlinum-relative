@@ -118,9 +118,9 @@ nlinum-releative will show the real line number at current line."
 (defun nlinum-relative-off ()
   "Turn OFF nlinum-relative."
   (interactive)
-  (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-mode -1))
   (advice-remove 'jit-lock-fontify-now #'nlinum-relative--save-current-line)
   (setq nlinum-format-function nlinum-relative--store-format-function)
+  (nlinum-relative-reflush)
   (when nlinum-relative--timer
     (cancel-timer nlinum-relative--timer)
     (setq nlinum-relative--timer nil)
@@ -144,7 +144,7 @@ nlinum-releative will show the real line number at current line."
         (nlinum-relative-on)
         (nlinum-mode 1))
     (nlinum-relative-off)
-    (nlinum-mode -1)))
+    ))
 
 ;;;###autoload
 (define-globalized-minor-mode global-nlinum-relative-mode nlinum-relative-mode
@@ -158,6 +158,10 @@ nlinum-releative will show the real line number at current line."
             (lambda () (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-off))))
   (add-hook 'evil-insert-state-exit-hook
             (lambda () (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-on))))
+  (add-hook 'evil-normal-state-entry-hook
+            (lambda () (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-on))))
+  (add-hook 'evil-normal-state-exit-hook
+            (lambda () (when (bound-and-true-p nlinum-relative-mode) (nlinum-relative-off))))
   (add-hook 'nlinum-relative-mode-hook (lambda ()
                           (when (evil-normal-state-p) (nlinum-relative-on))))
   )
