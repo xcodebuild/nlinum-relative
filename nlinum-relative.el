@@ -67,9 +67,11 @@ nlinum-releative will show the real line number at current line."
   (lambda (line width)
     (let* ((line-display (abs (- line nlinum-relative--current-line) ))
            (is-current-line? (eq line-display 0))
-           (line-display (if is-current-line? nlinum-relative--current-line line-display))
+           (line-display (if is-current-line?
+                             nlinum-relative--current-line
+                           (+ nlinum-relative-offset line-display)))
            (str (if (and (not (string-equal nlinum-relative-current-symbol "")) is-current-line?)
-                    nlinum-relative-current-symbol (format nlinum-format (+ line-display nlinum-relative-offset))))
+                    nlinum-relative-current-symbol (format nlinum-format line-display)))
            )
       (when (< (length str) width)
         ;; Left pad to try and right-align the line-numbers.
