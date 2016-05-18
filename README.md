@@ -23,7 +23,9 @@ This package is still available at MELPA as `nlinum-relative` now.
     (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 ```
 
-There is also a layer(not merged yet): https://github.com/syl20bnr/spacemacs/pull/6036
+# Spacemacs
+
+Use `develop` branch and set `dotspacemacs-line-numbers` to `'relative`.
 
 # Usage
 
