@@ -102,7 +102,7 @@ nlinum-releative will show the real line number at current line."
        start end '(fontified)))
     ))
 
-( nlinum-relative--timer nil)
+(setq nlinum-relative--timer nil)
 (make-local-variable 'nlinum-relative--timer)
 
 ;;;###autoload
