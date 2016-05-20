@@ -40,8 +40,8 @@ nlinum-releative will show the real line number at current line."
   :type 'string
   :group 'nlinum-relative)
 
-(defcustom nlinum-relative-redisplay-delay 0
-  "nlinum-relative-mode only redisplay when idle with a delay, default value is 0.1"
+(defcustom nlinum-relative-redisplay-delay 0.2
+  "nlinum-relative-mode only redisplay when idle with a delay, default value is 0.2"
   :type 'number
   :group 'nlinum-relative)
 
