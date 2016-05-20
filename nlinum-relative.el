@@ -89,17 +89,20 @@ nlinum-releative will show the real line number at current line."
 
 (defun nlinum-relative-reflush ()
   "Reflush display on current window"
+  (nlinum--after-change)
   (nlinum-relative--save-current-line)
-  ;; (jit-lock-refontify (window-start) (window-end))
+  (let* ((start (window-start))
+         (end (window-end))
+         (out-of-range? (< (point-max) end)) ;; out-of-range in magit commit window
+         (start (if out-of-range? (point-min) start))
+         (end (if out-of-range? (point-max) end))
+         )
+    (with-silent-modifications
+      (remove-text-properties
+       start end '(fontified)))
+    ))
 
-  ;; copy from nlinum-mode
-  (remove-overlays (point-min) (point-max) 'nlinum t)
-  (with-silent-modifications
-    (remove-text-properties
-     (point-min) (point-max) '(fontified)))
-  )
-
-(defvar nlinum-relative--timer nil)
+( nlinum-relative--timer nil)
 (make-local-variable 'nlinum-relative--timer)
 
 ;;;###autoload
