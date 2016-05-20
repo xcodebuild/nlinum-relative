@@ -3,17 +3,17 @@
 [![MELPA](https://melpa.org/packages/nlinum-relative-badge.svg)](https://melpa.org/#/nlinum-relative)
 
 # nlinum-relative
-Emacs relative line number besed on nlinum-mode
+Emacs relative line number based on nlinum-mode
 
 # Preview
 ![nlinum-relative](https://cloud.githubusercontent.com/assets/5436704/15207154/cafea3fa-1856-11e6-8f01-26a3832bf1fd.gif)
 
 # Why this
-`nlinum` is faster than `linum` because of `jit-lock`. And `nlinum-relative` only redisplay line number in idle which is much more smooth especially in big complex files.
+`nlinum` is faster than `linum` because of its use of [jit-lock](https://github.com/jwiegley/emacs-release/blob/master/lisp/jit-lock.el). `nlinum-relative` only redisplays line numbers when idle which is much more smoother especially with big files.
 
 # Install
 
-This package is still available at MELPA as `nlinum-relative` now. 
+This package is available on MELPA as `nlinum-relative`. 
 
 ```lisp
 (use-package nlinum-relative
@@ -41,7 +41,7 @@ Use `develop` branch and set `dotspacemacs-line-numbers` to `'relative`.
 
 # Related
 
-- [coldnew/linum-relative: display relative line number in the left margin in emacs](https://github.com/coldnew/linum-relative)
+- [coldnew/linum-relative: display relative line numbers in the left margin in emacs](https://github.com/coldnew/linum-relative)
 
   Some code from here
 
