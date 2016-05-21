@@ -25,7 +25,7 @@ This package is available on MELPA as `nlinum-relative`.
 
 # Spacemacs
 
-Use `develop` branch and set `dotspacemacs-line-numbers` to `'relative`.
+Use `develop` branch's `nlinum` layer.
 
 # Usage
 
