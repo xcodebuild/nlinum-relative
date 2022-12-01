@@ -47,7 +47,7 @@ nlinum-releative will show the real line number at current line."
 
 ;;;; Faces
 (defface nlinum-relative-current-face
-  '((t :inherit linum :foreground "#CAE682" :background "#444444" :weight bold))
+  '((t :inherit line-number :foreground "#CAE682" :background "#444444" :weight bold))
   "Face for displaying current line."
   :group 'nlinum-relative)
 
@@ -78,7 +78,7 @@ nlinum-releative will show the real line number at current line."
         (setq str (concat (make-string (- width (length str)) ?\ ) str)))
       (if is-current-line?
           (put-text-property 0 width 'face 'nlinum-relative-current-face str)
-        (put-text-property 0 width 'face 'linum str))
+        (put-text-property 0 width 'face 'line-number str))
       str))
   "nlinum-relative to replace nlinum-format-function")
 
